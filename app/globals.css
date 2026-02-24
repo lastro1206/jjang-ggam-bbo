@@ -36,6 +36,11 @@ body {
   overflow-x: hidden;
   min-height: 100vh;
   position: relative;
+  -ms-overflow-style: none;
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }
 
 /* 픽셀 아트 스타일링 */
