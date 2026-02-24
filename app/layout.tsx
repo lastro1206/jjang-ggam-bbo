@@ -9,8 +9,7 @@ const pressStart2P = Press_Start_2P({
 });
 
 export const metadata: Metadata = {
-  title: "우주 픽셀 가위바위보",
-  description: "8비트 픽셀 아트 스타일의 우주 테마 가위바위보 게임",
+  title: "짱겜뽀",
 };
 
 export default function RootLayout({
@@ -19,11 +18,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang='ko'>
       <body
         className={`${pressStart2P.variable} antialiased`}
-        style={{ cursor: "none" }}
-      >
+        style={{ cursor: "none" }}>
         {children}
       </body>
     </html>

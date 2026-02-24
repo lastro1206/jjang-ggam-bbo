@@ -69,9 +69,10 @@ export default function SpaceBackground() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 z-0 pointer-events-none"
-      style={{ background: "linear-gradient(180deg, #000428 0%, #004e92 100%)" }}
+      className='fixed inset-0 z-0 pointer-events-none'
+      style={{
+        background: "linear-gradient(180deg, #000428 0%, #004e92 100%)",
+      }}
     />
   );
 }
-

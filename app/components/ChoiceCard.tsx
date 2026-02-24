@@ -49,7 +49,9 @@ export default function ChoiceCard({
         onClick={onClick}
         disabled={isDisabled}
         className={`pixel-border relative overflow-hidden p-6 min-w-[150px] min-h-[200px] flex flex-col items-center justify-center gap-4 transition-all ${
-          isDisabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer hover:scale-105"
+          isDisabled
+            ? "opacity-50 cursor-not-allowed"
+            : "cursor-pointer hover:scale-105"
         } ${isLosing ? "grayscale" : ""}`}
         style={{
           background: `linear-gradient(to bottom, ${config.color}, ${darkerColor})`,
@@ -70,11 +72,10 @@ export default function ChoiceCard({
         transition={{
           duration: 1,
           repeat: isSelected ? Infinity : 0,
-        }}
-      >
+        }}>
         {/* 픽셀 캐릭터 스타일 배경 */}
         <div
-          className="absolute inset-0 opacity-20"
+          className='absolute inset-0 opacity-20'
           style={{
             backgroundImage: `repeating-linear-gradient(
               0deg,
@@ -85,13 +86,14 @@ export default function ChoiceCard({
             )`,
           }}
         />
-        
-        <div className="text-6xl pixel-text relative z-10">{config.emoji}</div>
-        <div className="text-lg pixel-text relative z-10" style={{ color: "#FFFFFF" }}>
+
+        <div className='text-6xl pixel-text relative z-10'>{config.emoji}</div>
+        <div
+          className='text-lg pixel-text relative z-10'
+          style={{ color: "#FFFFFF" }}>
           {config.label}
         </div>
       </motion.button>
     </GlitchEffect>
   );
 }
-

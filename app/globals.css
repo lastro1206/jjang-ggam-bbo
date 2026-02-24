@@ -15,6 +15,14 @@
   --font-pixel: var(--font-press-start);
 }
 
+@font-face {
+  font-family: "GalmuriMono9";
+  src: url("/fonts/GalmuriMono9.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -24,7 +32,7 @@
 body {
   background: linear-gradient(180deg, #000428 0%, #004e92 100%);
   color: var(--foreground);
-  font-family: var(--font-press-start), monospace;
+  font-family: "GalmuriMono9", var(--font-press-start), monospace;
   overflow-x: hidden;
   min-height: 100vh;
   position: relative;
@@ -33,18 +41,12 @@ body {
 /* 픽셀 아트 스타일링 */
 .pixel-border {
   border: 4px solid #ffffff;
-  box-shadow: 
-    inset -4px -4px 0px 0px #000000,
-    inset 4px 4px 0px 0px #ffffff,
-    -4px -4px 0px 0px #000000,
-    4px 4px 0px 0px #ffffff;
+  box-shadow: inset -4px -4px 0px 0px #000000, inset 4px 4px 0px 0px #ffffff,
+    -4px -4px 0px 0px #000000, 4px 4px 0px 0px #ffffff;
 }
 
 .pixel-text {
-  text-shadow: 
-    2px 2px 0px #000000,
-    -2px -2px 0px #000000,
-    2px -2px 0px #000000,
+  text-shadow: 2px 2px 0px #000000, -2px -2px 0px #000000, 2px -2px 0px #000000,
     -2px 2px 0px #000000;
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;
@@ -86,9 +88,23 @@ body {
 
 /* 흔들림 효과 */
 @keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
-  20%, 40%, 60%, 80% { transform: translateX(10px); }
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-10px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(10px);
+  }
 }
 
 .shake {

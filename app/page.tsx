@@ -76,12 +76,24 @@ export default function Home() {
       <StarParticles isActive={showParticles} />
 
       <main className='relative z-10 flex flex-col items-center justify-center min-h-screen p-8'>
+        {/* 동아리 로고 */}
+        <motion.img
+          src='/alomLogo1.png'
+          alt='ALOM Logo'
+          className='absolute top-4 left-1/2 transform -translate-x-1/2 h-32 md:h-40 object-contain z-20'
+          style={{ imageRendering: "pixelated" }}
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          whileHover={{ scale: 1.1 }}
+        />
+
         {/* 결과 메시지 */}
         <AnimatePresence mode='wait'>
           {result && (
             <motion.div
               key={result}
-              style={{ marginBottom: "1.5rem" }}
+              style={{ marginTop: "12rem", marginBottom: "1.5rem" }}
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0 }}
