@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useEffect, useRef } from "react";
 import GlitchEffect from "./GlitchEffect";
 
 type Choice = "rock" | "paper" | "scissors";
@@ -11,6 +12,7 @@ interface ChoiceCardProps {
   isSelected: boolean;
   isDisabled: boolean;
   isLosing: boolean;
+  isWinning?: boolean;
   onClick: () => void;
 }
 
@@ -37,26 +39,47 @@ export default function ChoiceCard({
   isSelected,
   isDisabled,
   isLosing,
+  isWinning = false,
   onClick,
 }: ChoiceCardProps) {
   const config = choiceConfig[choice];
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   // 색상의 어두운 버전 계산
   const darkerColor = config.color + "CC"; // 80% opacity
 
+  // isDisabled나 isLosing이 false로 변경되면 스타일 리셋
+  useEffect(() => {
+    if (buttonRef.current && !isDisabled && !isLosing) {
+      buttonRef.current.style.background = `linear-gradient(135deg, ${config.color} 0%, ${darkerColor} 50%, ${config.color} 100%)`;
+      buttonRef.current.style.filter = "none";
+      buttonRef.current.style.opacity = "1";
+    }
+  }, [isDisabled, isLosing, config.color, darkerColor]);
+
   return (
     <GlitchEffect isActive={isLosing}>
       <motion.button
+        ref={buttonRef}
         onClick={onClick}
         disabled={isDisabled}
         className={`pixel-border relative overflow-hidden p-8 min-w-[200px] min-h-[280px] md:min-w-[240px] md:min-h-[320px] flex flex-col items-center justify-center gap-6 transition-all ${
-          isDisabled
+          isDisabled && !isWinning
             ? "opacity-50 cursor-not-allowed"
+            : isDisabled && isWinning
+            ? "cursor-not-allowed"
             : "cursor-pointer hover:scale-105 card-pulse"
         } ${isLosing ? "grayscale" : ""}`}
         style={{
           background: `linear-gradient(135deg, ${config.color} 0%, ${darkerColor} 50%, ${config.color} 100%)`,
           backgroundSize: "200% 200%",
+        }}
+        onMouseDown={(e) => {
+          e.preventDefault();
+          e.currentTarget.style.background = `linear-gradient(135deg, ${config.color} 0%, ${darkerColor} 50%, ${config.color} 100%)`;
+        }}
+        onMouseUp={(e) => {
+          e.currentTarget.style.background = `linear-gradient(135deg, ${config.color} 0%, ${darkerColor} 50%, ${config.color} 100%)`;
         }}
         whileHover={
           !isDisabled

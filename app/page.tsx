@@ -77,6 +77,10 @@ export default function Home() {
     return result === "lose" && playerChoice === choice;
   };
 
+  const isWinning = (choice: Choice) => {
+    return result === "win" && playerChoice === choice;
+  };
+
   useEffect(() => {
     if (result) {
       playGameSound(result, 0.5);
@@ -320,6 +324,7 @@ export default function Home() {
                 isSelected={playerChoice === choice}
                 isDisabled={playerChoice !== null}
                 isLosing={isLosing(choice)}
+                isWinning={isWinning(choice)}
                 onClick={() => handleChoice(choice)}
               />
             </motion.div>
