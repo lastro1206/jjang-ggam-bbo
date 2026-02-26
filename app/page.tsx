@@ -89,7 +89,8 @@ export default function Home() {
           {result && (
             <motion.div
               key={result}
-              style={{ marginTop: "11.5vh", marginBottom: "1rem" }}
+              className='text-center'
+              style={{ marginBottom: "1rem" }}
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0 }}
@@ -179,6 +180,7 @@ export default function Home() {
         <AnimatePresence>
           {computerChoice && (
             <motion.div
+              className='flex flex-col items-center'
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 50 }}
