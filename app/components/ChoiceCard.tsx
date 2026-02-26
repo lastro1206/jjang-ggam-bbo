@@ -63,12 +63,12 @@ export default function ChoiceCard({
         ref={buttonRef}
         onClick={onClick}
         disabled={isDisabled}
-        className={`pixel-border relative overflow-hidden p-8 min-w-[200px] min-h-[280px] md:min-w-[240px] md:min-h-[320px] flex flex-col items-center justify-center gap-6 transition-all ${
+        className={`pixel-border relative overflow-hidden p-8 min-w-[200px] min-h-[280px] md:min-w-[240px] md:min-h-[320px] flex flex-col items-center justify-center gap-6 ${
           isDisabled && !isWinning
             ? "opacity-50 cursor-not-allowed"
             : isDisabled && isWinning
             ? "cursor-not-allowed"
-            : "cursor-pointer hover:scale-105 card-pulse"
+            : "cursor-pointer"
         } ${isLosing ? "grayscale" : ""}`}
         style={{
           background: `linear-gradient(135deg, ${config.color} 0%, ${darkerColor} 50%, ${config.color} 100%)`,
@@ -81,38 +81,16 @@ export default function ChoiceCard({
         onMouseUp={(e) => {
           e.currentTarget.style.background = `linear-gradient(135deg, ${config.color} 0%, ${darkerColor} 50%, ${config.color} 100%)`;
         }}
-        whileHover={
-          !isDisabled
-            ? {
-                scale: 1.15,
-                rotate: [0, -3, 3, -3, 3, 0],
-                boxShadow: `0 0 40px ${config.color}, 0 0 60px ${config.color}80, 0 0 80px ${config.color}60`,
-              }
-            : {}
-        }
-        whileTap={!isDisabled ? { scale: 0.95 } : {}}
+        whileHover={!isDisabled ? { scale: 1.05 } : {}}
+        whileTap={!isDisabled ? { scale: 0.98 } : {}}
         animate={
           isSelected
             ? {
-                boxShadow: [
-                  `0 0 20px ${config.color}, 0 0 40px ${config.color}80`,
-                  `0 0 60px ${config.color}, 0 0 80px ${config.color}80, 0 0 100px ${config.color}60`,
-                  `0 0 20px ${config.color}, 0 0 40px ${config.color}80`,
-                ],
-                scale: [1, 1.1, 1],
-                rotate: [0, 2, -2, 2, -2, 0],
-              }
-            : !isDisabled
-            ? {
-                y: [0, -5, 0],
+                boxShadow: `0 0 30px ${config.color}, 0 0 50px ${config.color}80`,
               }
             : {}
         }
-        transition={{
-          duration: isSelected ? 1 : 2,
-          repeat: isSelected ? Infinity : Infinity,
-          ease: "easeInOut",
-        }}>
+        transition={{ duration: 0.2 }}>
         {/* 픽셀 캐릭터 스타일 배경 */}
         <div
           className='absolute inset-0 opacity-20'
