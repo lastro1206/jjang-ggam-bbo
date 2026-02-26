@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import SpaceBackground from "./components/SpaceBackground";
 import CustomCursor from "./components/CustomCursor";
 import ChoiceCard from "./components/ChoiceCard";
 import StarParticles from "./components/StarParticles";
+import { playGameSound } from "./utils/sound";
 
 type Choice = "rock" | "paper" | "scissors";
 type Result = "win" | "lose" | "draw" | null;
@@ -68,6 +69,13 @@ export default function Home() {
   const isLosing = (choice: Choice) => {
     return result === "lose" && playerChoice === choice;
   };
+
+  // 결과가 변경될 때 사운드 재생
+  useEffect(() => {
+    if (result) {
+      playGameSound(result, 0.5);
+    }
+  }, [result]);
 
   return (
     <div className='relative min-h-screen overflow-hidden'>
