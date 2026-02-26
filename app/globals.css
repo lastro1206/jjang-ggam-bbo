@@ -169,6 +169,7 @@ button:focus,
 button:focus-visible {
   filter: none !important;
   background: inherit !important;
+  background-color: inherit !important;
   outline: none !important;
   border-color: inherit !important;
 }
