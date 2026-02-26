@@ -18,17 +18,17 @@ const choiceConfig = {
   scissors: {
     image: "/gawii.png",
     label: "가위",
-    color: "#FF6347",
+    color: "#FF1744", // 더 밝은 빨강
   },
   rock: {
     image: "/bawii.png",
     label: "바위",
-    color: "#8B4513",
+    color: "#FF6F00", // 금색 느낌의 주황
   },
   paper: {
     image: "/bojagi.png",
     label: "보",
-    color: "#4169E1",
+    color: "#FFD700", // 금색
   },
 };
 
@@ -52,27 +52,43 @@ export default function ChoiceCard({
         className={`pixel-border relative overflow-hidden p-8 min-w-[200px] min-h-[280px] md:min-w-[240px] md:min-h-[320px] flex flex-col items-center justify-center gap-6 transition-all ${
           isDisabled
             ? "opacity-50 cursor-not-allowed"
-            : "cursor-pointer hover:scale-105"
+            : "cursor-pointer hover:scale-105 card-pulse"
         } ${isLosing ? "grayscale" : ""}`}
         style={{
-          background: `linear-gradient(to bottom, ${config.color}, ${darkerColor})`,
+          background: `linear-gradient(135deg, ${config.color} 0%, ${darkerColor} 50%, ${config.color} 100%)`,
+          backgroundSize: "200% 200%",
         }}
-        whileHover={!isDisabled ? { scale: 1.05 } : {}}
+        whileHover={
+          !isDisabled
+            ? {
+                scale: 1.15,
+                rotate: [0, -3, 3, -3, 3, 0],
+                boxShadow: `0 0 40px ${config.color}, 0 0 60px ${config.color}80, 0 0 80px ${config.color}60`,
+              }
+            : {}
+        }
         whileTap={!isDisabled ? { scale: 0.95 } : {}}
         animate={
           isSelected
             ? {
                 boxShadow: [
-                  "0 0 0 0 rgba(255, 255, 255, 0.7)",
-                  "0 0 20px 10px rgba(255, 255, 255, 0.5)",
-                  "0 0 0 0 rgba(255, 255, 255, 0.7)",
+                  `0 0 20px ${config.color}, 0 0 40px ${config.color}80`,
+                  `0 0 60px ${config.color}, 0 0 80px ${config.color}80, 0 0 100px ${config.color}60`,
+                  `0 0 20px ${config.color}, 0 0 40px ${config.color}80`,
                 ],
+                scale: [1, 1.1, 1],
+                rotate: [0, 2, -2, 2, -2, 0],
+              }
+            : !isDisabled
+            ? {
+                y: [0, -5, 0],
               }
             : {}
         }
         transition={{
-          duration: 1,
-          repeat: isSelected ? Infinity : 0,
+          duration: isSelected ? 1 : 2,
+          repeat: isSelected ? Infinity : Infinity,
+          ease: "easeInOut",
         }}>
         {/* 픽셀 캐릭터 스타일 배경 */}
         <div

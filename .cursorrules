@@ -17,3 +17,6 @@
 패배 시: 선택한 카드가 흑백으로 변하며 깨지는 효과(Glitch)를 줘야 함.
 
 코드 구조: useState로 상태 관리(result, playerChoice, computerChoice)를 하고, 애니메이션은 framer-motion의 AnimatePresence를 활용해줘."
+
+!!!!중요!!!!
+f11 눌렀을 때 전체화면에 모든 컴포넌트가 보여져야 함!

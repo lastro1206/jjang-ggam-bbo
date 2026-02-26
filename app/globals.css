@@ -30,13 +30,28 @@
 }
 
 body {
-  background: linear-gradient(180deg, #000428 0%, #004e92 100%);
+  background: linear-gradient(180deg, #0a0014 0%, #1a0032 50%, #000428 100%);
   color: var(--foreground);
   font-family: "GalmuriMono9", var(--font-press-start), monospace;
   overflow-x: hidden;
   min-height: 100vh;
   position: relative;
   -ms-overflow-style: none;
+}
+
+/* 플래시 효과 */
+@keyframes flash {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.flash-effect {
+  animation: flash 0.5s infinite;
 }
 
 body::-webkit-scrollbar {
@@ -114,4 +129,43 @@ body::-webkit-scrollbar {
 
 .shake {
   animation: shake 0.5s;
+}
+
+/* 그라데이션 애니메이션 */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* 카드 펄스 효과 */
+@keyframes cardPulse {
+  0%,
+  100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.2);
+  }
+}
+
+.card-pulse {
+  animation: gradientShift 3s ease infinite, cardPulse 2s ease-in-out infinite;
+}
+
+/* 배너 테두리 */
+.pixel-border-b {
+  border-bottom: 4px solid #ffffff;
+  box-shadow: 0 4px 0px 0px #000000;
+}
+
+.pixel-border-t {
+  border-top: 4px solid #ffffff;
+  box-shadow: 0 -4px 0px 0px #000000;
 }
