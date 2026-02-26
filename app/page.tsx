@@ -83,32 +83,20 @@ export default function Home() {
       <CustomCursor />
       <StarParticles isActive={showParticles} />
 
-      <main className='relative z-10 flex flex-col items-center justify-center min-h-screen p-8'>
-        {/* 동아리 로고 */}
-        <motion.img
-          src='/alomLogo1.png'
-          alt='ALOM Logo'
-          className='absolute top-4 left-1/2 transform -translate-x-1/2 h-32 md:h-40 object-contain z-20'
-          style={{ imageRendering: "pixelated" }}
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          whileHover={{ scale: 1.1 }}
-        />
-
+      <main className='relative z-10 flex flex-col items-center justify-center min-h-screen p-4 md:p-6'>
         {/* 결과 메시지 */}
         <AnimatePresence mode='wait'>
           {result && (
             <motion.div
               key={result}
-              style={{ marginTop: "12rem", marginBottom: "1.5rem" }}
+              style={{ marginTop: "11.5vh", marginBottom: "1rem" }}
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0 }}
               transition={{ duration: 0.3 }}>
               {result === "win" && (
                 <motion.div
-                  className='text-5xl md:text-7xl pixel-text'
+                  className='text-4xl md:text-6xl pixel-text'
                   style={{ color: "#FFD700" }}
                   animate={{
                     scale: [1, 1.2, 1],
@@ -128,7 +116,7 @@ export default function Home() {
               )}
               {result === "lose" && (
                 <motion.div
-                  className='text-5xl md:text-7xl pixel-text'
+                  className='text-4xl md:text-6xl pixel-text'
                   style={{ color: "#FF0000" }}
                   animate={{
                     opacity: [1, 0.5, 1],
@@ -142,7 +130,7 @@ export default function Home() {
               )}
               {result === "draw" && (
                 <motion.div
-                  className='text-5xl md:text-7xl pixel-text'
+                  className='text-4xl md:text-6xl pixel-text'
                   style={{ color: "#FFFFFF" }}
                   animate={{
                     x: isShaking ? [-10, 10, -10, 10, 0] : 0,
@@ -159,10 +147,10 @@ export default function Home() {
 
         {/* 선택 카드들 */}
         <div
-          className={`flex flex-wrap gap-6 justify-center items-center ${
+          className={`flex flex-wrap gap-4 md:gap-6 justify-center items-center ${
             isShaking ? "shake" : ""
           }`}
-          style={{ marginBottom: "2.5rem" }}>
+          style={{ marginBottom: "1.5rem" }}>
           {choices.map((choice) => (
             <motion.div
               key={choice}
@@ -196,8 +184,8 @@ export default function Home() {
               exit={{ opacity: 0, y: 50 }}
               transition={{ duration: 0.5 }}>
               <div
-                className='text-2xl pixel-text text-center'
-                style={{ marginBottom: "2.25rem" }}>
+                className='text-xl md:text-2xl pixel-text text-center'
+                style={{ marginBottom: "1.5rem" }}>
                 컴퓨터 선택:
               </div>
               <div className='flex justify-center'>
@@ -222,8 +210,8 @@ export default function Home() {
               exit={{ opacity: 0, scale: 0 }}
               transition={{ delay: 1, duration: 0.3 }}
               onClick={resetGame}
-              className='px-8 py-4 pixel-border pixel-text text-xl bg-gradient-to-b from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 transition-all cursor-pointer'
-              style={{ marginTop: "2.5rem", marginBottom: "2.5rem" }}
+              className='px-8 py-4 pixel-border pixel-text text-lg md:text-xl bg-gradient-to-b from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 transition-all cursor-pointer'
+              style={{ marginTop: "1.5rem", marginBottom: "1.5rem" }}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}>
               다시하기

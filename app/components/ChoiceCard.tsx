@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import GlitchEffect from "./GlitchEffect";
 
 type Choice = "rock" | "paper" | "scissors";
@@ -14,20 +15,20 @@ interface ChoiceCardProps {
 }
 
 const choiceConfig = {
+  scissors: {
+    image: "/gawii.png",
+    label: "가위",
+    color: "#FF6347",
+  },
   rock: {
-    emoji: "🪨",
+    image: "/bawii.png",
     label: "바위",
     color: "#8B4513",
   },
   paper: {
-    emoji: "📄",
+    image: "/bojagi.png",
     label: "보",
     color: "#4169E1",
-  },
-  scissors: {
-    emoji: "✂️",
-    label: "가위",
-    color: "#FF6347",
   },
 };
 
@@ -48,7 +49,7 @@ export default function ChoiceCard({
       <motion.button
         onClick={onClick}
         disabled={isDisabled}
-        className={`pixel-border relative overflow-hidden p-6 min-w-[150px] min-h-[200px] flex flex-col items-center justify-center gap-4 transition-all ${
+        className={`pixel-border relative overflow-hidden p-8 min-w-[200px] min-h-[280px] md:min-w-[240px] md:min-h-[320px] flex flex-col items-center justify-center gap-6 transition-all ${
           isDisabled
             ? "opacity-50 cursor-not-allowed"
             : "cursor-pointer hover:scale-105"
@@ -87,9 +88,17 @@ export default function ChoiceCard({
           }}
         />
 
-        <div className='text-6xl pixel-text relative z-10'>{config.emoji}</div>
+        <Image
+          src={config.image}
+          alt={config.label}
+          width={128}
+          height={128}
+          unoptimized
+          className='w-28 h-28 md:w-32 md:h-32 object-contain relative z-10 pixel-text'
+          style={{ imageRendering: "pixelated" }}
+        />
         <div
-          className='text-lg pixel-text relative z-10'
+          className='text-xl md:text-2xl pixel-text relative z-10'
           style={{ color: "#FFFFFF" }}>
           {config.label}
         </div>
