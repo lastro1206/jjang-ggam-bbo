@@ -47,7 +47,7 @@ export default function ChoiceCard({
       <motion.button
         onClick={onClick}
         disabled={isDisabled}
-        className={`pixel-border relative overflow-hidden p-8 min-w-[200px] min-h-[280px] md:min-w-[240px] md:min-h-[320px] flex flex-col items-center justify-center gap-6 ${
+        className={`pixel-border relative overflow-hidden p-4 md:p-6 min-w-[140px] min-h-[180px] md:min-w-[200px] md:min-h-[260px] flex flex-col items-center justify-center gap-3 md:gap-5 ${
           isDisabled ? "cursor-not-allowed" : "cursor-pointer"
         }`}
         style={{
@@ -85,11 +85,11 @@ export default function ChoiceCard({
           width={128}
           height={128}
           unoptimized
-          className='w-28 h-28 md:w-32 md:h-32 object-contain relative z-10 pixel-text'
+          className='w-16 h-16 md:w-28 md:h-28 object-contain relative z-10 pixel-text'
           style={{ imageRendering: "pixelated" }}
         />
         <div
-          className='text-xl md:text-2xl pixel-text relative z-10'
+          className='text-base md:text-xl pixel-text relative z-10'
           style={{ color: "#FFFFFF" }}>
           {config.label}
         </div>

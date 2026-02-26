@@ -219,20 +219,27 @@ export default function Home() {
         </div>
       </motion.div>
 
-      <main className='relative z-10 flex flex-col items-center justify-center min-h-screen p-4 md:p-6 pt-16 pb-16'>
+      <main
+        className='relative z-10 flex flex-col items-center justify-center p-2 md:p-3'
+        style={{
+          minHeight: "100vh",
+          paddingTop: "50px",
+          paddingBottom: "50px",
+          boxSizing: "border-box",
+        }}>
         <AnimatePresence mode='wait'>
           {result && (
             <motion.div
               key={result}
               className='text-center'
-              style={{ marginBottom: "1rem" }}
+              style={{ marginBottom: "0.5rem" }}
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0 }}
               transition={{ duration: 0.3 }}>
               {result === "win" && (
                 <motion.div
-                  className='text-5xl md:text-7xl pixel-text'
+                  className='text-3xl md:text-5xl pixel-text'
                   style={{ color: "#FFD700" }}
                   animate={{
                     scale: [1, 1.4, 1],
@@ -267,7 +274,7 @@ export default function Home() {
               )}
               {result === "lose" && (
                 <motion.div
-                  className='text-5xl md:text-7xl pixel-text'
+                  className='text-3xl md:text-5xl pixel-text'
                   style={{ color: "#FF0000" }}
                   animate={{
                     opacity: [1, 0.3, 1],
@@ -284,7 +291,7 @@ export default function Home() {
               )}
               {result === "draw" && (
                 <motion.div
-                  className='text-4xl md:text-6xl pixel-text'
+                  className='text-2xl md:text-4xl pixel-text'
                   style={{ color: "#FFFFFF" }}
                   animate={{
                     x: isShaking ? [-10, 10, -10, 10, 0] : 0,
@@ -306,10 +313,10 @@ export default function Home() {
         </AnimatePresence>
 
         <div
-          className={`flex flex-wrap gap-4 md:gap-6 justify-center items-center ${
+          className={`flex flex-wrap gap-2 md:gap-3 justify-center items-center ${
             isShaking ? "shake" : ""
           }`}
-          style={{ marginBottom: "1.5rem" }}>
+          style={{ marginBottom: "0.5rem" }}>
           {choices.map((choice) => (
             <motion.div
               key={choice}
@@ -340,9 +347,9 @@ export default function Home() {
               exit={{ opacity: 0, y: 50 }}
               transition={{ duration: 0.5 }}>
               <div
-                className='text-xl md:text-2xl pixel-text text-center'
+                className='text-lg md:text-xl pixel-text text-center'
                 style={{
-                  marginBottom: "1.5rem",
+                  marginBottom: "0.5rem",
                   color: "#FFD700",
                   textShadow: "0 0 10px rgba(255, 215, 0, 0.8)",
                 }}>
@@ -385,10 +392,9 @@ export default function Home() {
                 },
               }}
               onClick={resetGame}
-              className='px-10 py-5 pixel-border pixel-text text-xl md:text-2xl bg-gradient-to-b from-red-600 via-red-500 to-red-600 hover:from-red-500 hover:to-red-700 transition-all cursor-pointer'
+              className='px-6 py-3 pixel-border pixel-text text-base md:text-lg bg-gradient-to-b from-red-600 via-red-500 to-red-600 hover:from-red-500 hover:to-red-700 transition-all cursor-pointer'
               style={{
-                marginTop: "1.5rem",
-                marginBottom: "1.5rem",
+                marginTop: "0.5rem",
                 color: "#FFFFFF",
                 fontWeight: "bold",
               }}
