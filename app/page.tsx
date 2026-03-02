@@ -6,7 +6,7 @@ import { FaHandRock, FaHandPaper, FaHandScissors } from "react-icons/fa";
 import SpaceBackground from "./components/SpaceBackground";
 import CustomCursor from "./components/CustomCursor";
 import StarParticles from "./components/StarParticles";
-import { playGameSound } from "./utils/sound";
+import { playGameSound, playBackgroundMusic } from "./utils/soundPaths";
 import { LiaHandPaper, LiaHandRock, LiaHandScissors } from "react-icons/lia";
 
 type Choice = "rock" | "paper" | "scissors";
@@ -110,6 +110,21 @@ export default function Home() {
   const rouletteRef = useRef<HTMLDivElement>(null);
   const randomRef = useRef(() => Math.random());
   const ledTimerRef = useRef<number | null>(null);
+  const backgroundMusicRef = useRef<HTMLAudioElement | null>(null);
+
+  // 배경음악 재생
+  useEffect(() => {
+    // 배경음악 시작
+    backgroundMusicRef.current = playBackgroundMusic(0.3);
+
+    // 컴포넌트 언마운트 시 배경음악 정리
+    return () => {
+      if (backgroundMusicRef.current) {
+        backgroundMusicRef.current.pause();
+        backgroundMusicRef.current = null;
+      }
+    };
+  }, []);
 
   // 컴포넌트 언마운트 시 LED 타이머 정리
   useEffect(() => {
