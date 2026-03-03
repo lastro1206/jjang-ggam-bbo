@@ -231,14 +231,15 @@ export default function Home() {
       <main className='relative z-10 flex flex-grow flex-col items-center justify-center p-4'>
         <div className='flex flex-col items-center w-full max-w-[600px] gap-8'>
           {/* RESULT AREA */}
-          <div className='h-20 flex items-center justify-center'>
+          <div className='h-20 flex flex-col items-center justify-center gap-2'>
             <AnimatePresence mode='wait'>
               {result && !isSpinning && (
                 <motion.div
                   key={result}
                   initial={{ opacity: 0, scale: 0 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0 }}>
+                  exit={{ opacity: 0, scale: 0 }}
+                  className='flex flex-col items-center gap-2'>
                   <div
                     className='text-2xl md:text-4xl pixel-text text-center'
                     style={{
@@ -261,6 +262,23 @@ export default function Home() {
                       ? "LOSE"
                       : "DRAW"}
                   </div>
+                  {playerChoice && computerChoice && (
+                    <div className='text-lg md:text-xl pixel-text text-white flex items-center gap-3'>
+                      <span className='flex items-center gap-2'>
+                        <span>You:</span>
+                        <span className='text-2xl'>
+                          {getChoiceIcon(playerChoice)}
+                        </span>
+                      </span>
+                      <span className='text-gray-400'>vs</span>
+                      <span className='flex items-center gap-2'>
+                        <span>Computer:</span>
+                        <span className='text-2xl'>
+                          {getChoiceIcon(computerChoice)}
+                        </span>
+                      </span>
+                    </div>
+                  )}
                 </motion.div>
               )}
             </AnimatePresence>
