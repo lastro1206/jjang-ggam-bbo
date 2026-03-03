@@ -50,14 +50,26 @@ export function playSound(
 }
 
 /**
- * 배경음악을 재생합니다. (반복 재생)
+ * 배경음악을 재생합니다. (반복 재생, 3초부터 시작)
  * @param volume - 볼륨 (0.0 ~ 1.0, 기본값: 0.3)
  * @returns Audio 객체 (정지 시 사용)
  */
 export function playBackgroundMusic(
-  volume: number = 0.3
+  volume: number = 1.0
 ): HTMLAudioElement | null {
-  return playSound("background", volume, true);
+  try {
+    const audio = new Audio(SOUND_PATHS.background);
+    audio.volume = Math.max(0, Math.min(1, volume));
+    audio.loop = true;
+    audio.currentTime = 3; // 3초부터 재생
+    audio.play().catch((error) => {
+      console.warn(`Failed to play background music:`, error);
+    });
+    return audio;
+  } catch (error) {
+    console.warn(`Failed to create audio for background music:`, error);
+    return null;
+  }
 }
 
 /**

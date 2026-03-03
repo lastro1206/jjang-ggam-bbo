@@ -100,20 +100,23 @@ export default function Home() {
   const backgroundMusicRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    backgroundMusicRef.current = playBackgroundMusic(0.3);
     return () => {
-      if (backgroundMusicRef.current) backgroundMusicRef.current.pause();
-    };
-  }, []);
-
-  useEffect(() => {
-    return () => {
+      if (backgroundMusicRef.current) {
+        backgroundMusicRef.current.pause();
+        backgroundMusicRef.current = null;
+      }
       if (ledTimerRef.current) clearInterval(ledTimerRef.current);
     };
   }, []);
 
   const handleChoice = (choice: Choice) => {
     if (isSpinning || playerChoice !== null) return;
+
+    // 버튼 클릭 시 BGM 시작 (이미 재생 중이면 재시작하지 않음)
+    if (!backgroundMusicRef.current || backgroundMusicRef.current.paused) {
+      backgroundMusicRef.current = playBackgroundMusic(1.0);
+    }
+
     setPlayerChoice(choice);
     setIsSpinning(true);
     if (ledTimerRef.current) clearInterval(ledTimerRef.current);
